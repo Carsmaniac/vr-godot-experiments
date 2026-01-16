@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://y0j46ct8rv7f"]
+[gd_scene load_steps=30 format=4 uid="uid://y0j46ct8rv7f"]
 
 [ext_resource type="Script" uid="uid://7k20cvcu5d1e" path="res://main.gd" id="1_3t01i"]
 [ext_resource type="PackedScene" uid="uid://ckwhayesn24ol" path="res://room.tscn" id="2_d4o4o"]
@@ -10,6 +10,16 @@
 [ext_resource type="Script" uid="uid://b0whku4lmxepw" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="7_ownji"]
 [ext_resource type="Resource" uid="uid://ra50ueubhepa" path="res://addons/hand_pose_detector/poses/point_thumb_up.tres" id="8_pcf64"]
 [ext_resource type="Script" uid="uid://50qjwo2axg0s" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="9_ux58f"]
+[ext_resource type="Script" uid="uid://c0u0bn7usyke8" path="res://picking_collider.gd" id="11_efxa6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
+size = Vector3(10.0859375, 0.5130615, 9.702148)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_efxa6"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dg77c"]
+size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gp80n"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -242,6 +252,9 @@ bind/24/name = &"RightLittleTip"
 bind/24/bone = -1
 bind/24/pose = Transform3D(-0.0340048, 0.961705, -0.271969, -0.359157, -0.265706, -0.894655, -0.932658, 0.0672569, 0.354438, 0.0260868, -0.135553, 0.0427634)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+size = Vector3(0.119018555, 0.12182617, 0.13311768)
+
 [sub_resource type="GDScript" id="GDScript_tpxpg"]
 script/source = "extends XRController3D
 
@@ -269,9 +282,28 @@ func _process(_delta: float) -> void:
 [node name="Demo" type="Node3D"]
 script = ExtResource("1_3t01i")
 
-[node name="Room" parent="." node_paths=PackedStringArray("origin_node") instance=ExtResource("2_d4o4o")]
+[node name="Room" parent="." node_paths=PackedStringArray("origin_node", "left_hand", "right_hand") instance=ExtResource("2_d4o4o")]
 script = ExtResource("3_d4o4o")
 origin_node = NodePath("../XROrigin3D")
+left_hand = NodePath("../XROrigin3D/LeftTrackedHand")
+right_hand = NodePath("../XROrigin3D/RightTrackedHand")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Room"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24346924, 0)
+shape = SubResource("BoxShape3D_ycdy4")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09546554, 0.8725945, -0.2165899)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RigidBody3D"]
+shape = SubResource("BoxShape3D_efxa6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RigidBody3D"]
+mesh = SubResource("BoxMesh_dg77c")
+
+[node name="PickableObject" type="Node" parent="Room/RigidBody3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_42o4x")
@@ -522,6 +554,13 @@ controller_action_map = SubResource("Resource_gbdrn")
 hand_tracker_name = "/user/hand_tracker/right"
 hand_pose_set = ExtResource("4_aw253")
 
+[node name="PickingCollider" type="Area3D" parent="XROrigin3D/RightTrackedHand"]
+script = ExtResource("11_efxa6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightTrackedHand/PickingCollider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059143066, 0.0115869045, -0.07319458)
+shape = SubResource("BoxShape3D_dg77c")
+
 [node name="LeftPoseController" type="XRController3D" parent="XROrigin3D"]
 tracker = &"/user/hand_pose_controller/left"
 script = SubResource("GDScript_tpxpg")
@@ -544,10 +583,12 @@ mesh = SubResource("CapsuleMesh_oevpt")
 [connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_ended"]
 [connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="." method="_on_left_hand_pose_started"]
 [connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_started"]
-[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="." method="_on_right_hand_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_ended"]
-[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="." method="_on_right_hand_pose_started"]
+[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_ended"]
 [connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_started"]
+[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_started"]
+[connection signal="body_entered" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_entered"]
+[connection signal="body_exited" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_exited"]
 
 [editable path="XROrigin3D/LeftTrackedHand/LeftHandHumanoid"]
 [editable path="XROrigin3D/RightTrackedHand/RightHandHumanoid"]
