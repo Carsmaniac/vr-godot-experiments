@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjcehqrfoxav3" path="res://addons/hand_pose_detector/hands/LeftHandHumanoid.gltf" id="1_2xo61"]
 [ext_resource type="PackedScene" uid="uid://cb8givgqvol3d" path="res://assets/inspect/axis.tscn" id="1_hotic"]
-[ext_resource type="Script" path="res://inspect.gd" id="1_rh4cf"]
+[ext_resource type="Script" uid="uid://bx22v4xaxuiq2" path="res://inspect.gd" id="1_rh4cf"]
 [ext_resource type="PackedScene" uid="uid://dabmoo0spa6vg" path="res://addons/hand_pose_detector/hands/RightHandHumanoid.gltf" id="2_lordw"]
 [ext_resource type="Texture2D" uid="uid://jmog4gftnc6" path="res://addons/hand_pose_detector/hands/hand.png" id="3_edpu0"]
 [ext_resource type="PackedScene" uid="uid://cc1uevricyqo0" path="res://assets/inspect/flex_info.tscn" id="6_dybmt"]
