@@ -13,14 +13,21 @@ var step_size_change = 1.2
 var point_direction_threshold = 0.5
 var move_speed = 0.02
 
+# Room size, not user size
+var current_size = 1 # indicative, not definitive
+var intended_size = 1
+var min_size = 0.2
+var max_size = 3
+
 var movement_enabled = true
-var mini_experiment: int = 8
+var mini_experiment: int = 9
 # 1: greater variations in user scale (fist)
 # 2: user scale that changes over time (fist)
 # 3: (not possible in Godot?)
 # 6: changing object scales disproportionally
 # 7: changing scale in reaction to user actions (point and thumbs up)
 # 8: changing scale in reaction to user actions (point up and down)
+# 9: Alice in Wonderland experiment remake
 
 @export var origin_node: Node3D
 @export var left_hand: Node3D
@@ -54,7 +61,16 @@ func _process(_delta: float) -> void:
 				rescale(1/(constant_size_change))
 			elif abs(left_hand.rotation_degrees.z) > 100:
 				rescale(constant_size_change)
-			#print(left_hand.rotation_degrees)
+				
+	elif mini_experiment == 9:
+		if intended_size > current_size:
+			rescale(constant_size_change)
+			if current_size > max_size:
+				intended_size = current_size
+		elif intended_size < current_size:
+			rescale(1/constant_size_change)
+			if current_size < min_size:
+				intended_size = current_size
 				
 	if movement_enabled:
 		if r_pointing:
@@ -65,6 +81,12 @@ func _process(_delta: float) -> void:
 		
 func rescale(rescale_factor: float):
 	self.scale *= rescale_factor
+	current_size *= rescale_factor
+	for child in self.get_children():
+		if child is RigidBody3D:
+			#child.find_child("CollisionShape3D").shape.size *= rescale_factor
+			#child.find_child("MeshInstance3D").mesh.size *= rescale_factor
+			pass
 	
 	var user_pos = origin_node.find_child("XRCamera3D").global_position
 	var rel_pos = user_pos - self.position
@@ -103,3 +125,11 @@ func _on_right_pose_ended(_p_name: String) -> void:
 	right_hand_closed = false
 	r_pointing = false
 	r_thumbing = false
+
+func _on_mouth_collider_body_entered(body: Node3D) -> void:
+	if body is PickableObject:
+		if body.eatable_object:
+			if body.eating_increases_scale:
+				intended_size = min_size
+			else:
+				intended_size = max_size
