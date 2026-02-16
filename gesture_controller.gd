@@ -16,7 +16,7 @@ var move_speed = 0.02
 # Room size, not user size
 var current_size = 1 # indicative, not definitive
 var intended_size = 1
-var min_size = 0.2
+var min_size = 0.5
 var max_size = 3
 
 var movement_enabled = true
@@ -33,9 +33,25 @@ var mini_experiment: int = 9
 @export var left_hand: Node3D
 @export var right_hand: Node3D
 
+var xr_interface: XRInterface
+var teensy: Node3D
+var teensy2: Node3D
+
+var left_eye_transform: Transform3D
+var right_eye_transform: Transform3D
+#var pickable_children: Array[PickableObject]
+
 
 func _ready() -> void:
+	#for child in get_children():
+		#if child.get_child(0) is PickableObject:
+			#pickable_children.append(child)
 	pass
+	xr_interface = XRServer.find_interface("OpenXR")
+	teensy = find_child("Teensy")
+	teensy2 = teensy.duplicate()
+	add_child(teensy2)
+	
 
 func _process(_delta: float) -> void:
 	if mini_experiment == 2:
@@ -71,7 +87,7 @@ func _process(_delta: float) -> void:
 			rescale(1/constant_size_change)
 			if current_size < min_size:
 				intended_size = current_size
-				
+
 	if movement_enabled:
 		if r_pointing:
 			var movement_vector = Vector2(-move_speed, 0)
@@ -79,14 +95,19 @@ func _process(_delta: float) -> void:
 			origin_node.position.x += movement_vector.x
 			origin_node.position.z += -movement_vector.y
 		
+func _physics_process(_delta: float) -> void:
+	var left_eye_transform = xr_interface.get_transform_for_view(0, origin_node.global_transform)
+	var right_eye_transform = xr_interface.get_transform_for_view(1, origin_node.global_transform)
+	teensy.transform = left_eye_transform
+	teensy.position -= teensy.transform.basis.z * 0.075
+	teensy2.transform = right_eye_transform
+	teensy2.position -= teensy2.transform.basis.z * 0.075
+		
 func rescale(rescale_factor: float):
 	self.scale *= rescale_factor
 	current_size *= rescale_factor
-	for child in self.get_children():
-		if child is RigidBody3D:
-			#child.find_child("CollisionShape3D").shape.size *= rescale_factor
-			#child.find_child("MeshInstance3D").mesh.size *= rescale_factor
-			pass
+	#for pickable_child in pickable_children:
+		#pickable_child.scale *= rescale_factor
 	
 	var user_pos = origin_node.find_child("XRCamera3D").global_position
 	var rel_pos = user_pos - self.position

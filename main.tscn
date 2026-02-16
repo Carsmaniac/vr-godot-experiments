@@ -7,21 +7,27 @@
 [ext_resource type="Script" uid="uid://bh6hebwxe77od" path="res://pickable_object.gd" id="4_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dabmoo0spa6vg" path="res://addons/hand_pose_detector/hands/RightHandHumanoid.gltf" id="4_uvuof"]
 [ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="5_0abgo"]
+[ext_resource type="PackedScene" uid="uid://stfly1wugymu" path="res://objects/Cupcake.glb" id="5_yaehf"]
 [ext_resource type="PackedScene" uid="uid://bq88kqwoppprt" path="res://assets/monster_can/pink_monster_can.glb" id="5_ycdy4"]
-[ext_resource type="PackedScene" uid="uid://blav46xvrlb7x" path="res://objects/plush_e.glb" id="6_w48qg"]
 [ext_resource type="Script" uid="uid://b0whku4lmxepw" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="7_ownji"]
 [ext_resource type="Texture2D" uid="uid://c0dwo1jl6f6g8" path="res://room/lino-floor.jpg" id="7_vivmo"]
 [ext_resource type="Texture2D" uid="uid://rucqumuns36r" path="res://room/paint.jpg" id="8_2cqfq"]
 [ext_resource type="Resource" uid="uid://ra50ueubhepa" path="res://addons/hand_pose_detector/poses/point_thumb_up.tres" id="8_pcf64"]
+[ext_resource type="ArrayMesh" uid="uid://bov215jjjfkc7" path="res://objects/table/model.obj" id="8_yaehf"]
 [ext_resource type="Script" uid="uid://50qjwo2axg0s" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="9_ux58f"]
+[ext_resource type="ArrayMesh" uid="uid://cg2ggj5r3ytb6" path="res://objects/WallShelf.obj" id="9_yaehf"]
 [ext_resource type="Script" uid="uid://c0u0bn7usyke8" path="res://picking_collider.gd" id="11_efxa6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
 size = Vector3(10.0859375, 0.5130615, 9.702148)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ycdy4"]
-height = 0.1862793
+height = 0.17
 radius = 0.041503906
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_074og"]
+height = 0.14892578
+radius = 0.06298828
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
 albedo_texture = ExtResource("7_vivmo")
@@ -51,6 +57,16 @@ size = Vector3(10, 3.5, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d13ii"]
 size = Vector3(10, 3.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cegan"]
+size = Vector3(1.7099609, 0.052490234, 1.0302734)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_82xsv"]
+size = Vector3(0.4813385, 0.049743652, 1.3818359)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yaehf"]
+radius = 0.005
+height = 0.02
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gp80n"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -322,27 +338,41 @@ origin_node = NodePath("../XROrigin3D")
 left_hand = NodePath("../XROrigin3D/LeftTrackedHand")
 right_hand = NodePath("../XROrigin3D/RightTrackedHand")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room" unique_id=93213409]
+[node name="Floor" type="StaticBody3D" parent="Room" unique_id=93213409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.584427e-05, 0.0012871027, -0.001462251)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/StaticBody3D" unique_id=1078925040]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=1078925040]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24346924, 0)
 shape = SubResource("BoxShape3D_ycdy4")
 
-[node name="ShrinkingCan" type="RigidBody3D" parent="Room" unique_id=307466439]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.095561385, 0.4373951, -0.21805215)
+[node name="CanNode" type="Node3D" parent="Room" unique_id=1031923525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0825648, 2.1201873, 0.058734775)
+
+[node name="ShrinkingCan" type="RigidBody3D" parent="Room/CanNode" unique_id=307466439]
 script = ExtResource("4_dg77c")
 eatable_object = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/ShrinkingCan" unique_id=1154258477]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/CanNode/ShrinkingCan" unique_id=1154258477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00061035156, 0)
 shape = SubResource("CylinderShape3D_ycdy4")
 
-[node name="MonsterCan" parent="Room/ShrinkingCan" unique_id=2035225325 instance=ExtResource("5_ycdy4")]
-transform = Transform3D(-4.098168, 0, 0.62132645, 0, 4.145, 0, -0.62132645, 0, -4.098168, 0, 0, 0)
+[node name="MonsterCan" parent="Room/CanNode/ShrinkingCan" unique_id=2035225325 instance=ExtResource("5_ycdy4")]
+transform = Transform3D(-3.6641278, 0, 0.5555213, 0, 3.706, 0, -0.5555213, 0, -3.6641278, 0, 0, 0)
 
-[node name="GrowingPill" parent="Room" unique_id=2013960833 instance=ExtResource("6_w48qg")]
-transform = Transform3D(0.007, 0, 0, 0, 0.007, 0, 0, 0, 0.007, 0.6422391, 0.5392256, -0.4855576)
+[node name="CupcakeNode" type="Node3D" parent="Room" unique_id=1961798052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32492355, 0.8700905, -0.30549437)
+
+[node name="GrowingCake" type="RigidBody3D" parent="Room/CupcakeNode" unique_id=857324612]
+script = ExtResource("4_dg77c")
+eatable_object = true
+eating_increases_scale = true
+
+[node name="CupcakeModel" parent="Room/CupcakeNode/GrowingCake" unique_id=2022919222 instance=ExtResource("5_yaehf")]
+transform = Transform3D(0.104240656, 0, 0.17068651, 0, 0.2, 0, -0.17068651, 0, 0.104240656, 0.0035727024, -0.04627192, -0.010056257)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/CupcakeNode/GrowingCake" unique_id=1625457381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0007324219, 0)
+shape = SubResource("CylinderShape3D_074og")
 
 [node name="RoomModel" type="Node3D" parent="Room" unique_id=358047910]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
@@ -407,6 +437,33 @@ shape = SubResource("BoxShape3D_d13ii")
 [node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=1760506533]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.584427e-05, 3.0848508, -0.001462251)
 omni_range = 18.587446
+
+[node name="Table" type="StaticBody3D" parent="Room" unique_id=1365843782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18833065, 0.66784155, -0.6581484)
+
+[node name="TableModel" type="MeshInstance3D" parent="Room/Table" unique_id=265873281]
+mesh = ExtResource("8_yaehf")
+skeleton = NodePath("../../RoomModel/Wall3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Table" unique_id=1686372243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10140991, -0.0029296875)
+shape = SubResource("BoxShape3D_cegan")
+
+[node name="WallShelf" type="StaticBody3D" parent="Room" unique_id=1823326073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7613215, 1.880448, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/WallShelf" unique_id=1245357832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035255432, 0.10531616, 0)
+shape = SubResource("BoxShape3D_82xsv")
+
+[node name="WallShelfModel" type="MeshInstance3D" parent="Room/WallShelf" unique_id=1689065171]
+transform = Transform3D(-0.6, 0, -5.2453668e-08, 0, 0.6, 0, 5.2453668e-08, 0, -0.6, -0.12695551, -0.05630195, 0)
+mesh = ExtResource("9_yaehf")
+
+[node name="Teensy" type="Node3D" parent="Room" unique_id=466588676]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Teensy" unique_id=1505528390]
+mesh = SubResource("CapsuleMesh_yaehf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1613755615]
 environment = SubResource("Environment_42o4x")
@@ -700,16 +757,16 @@ visible = false
 mesh = SubResource("CapsuleMesh_oevpt")
 
 [connection signal="body_entered" from="XROrigin3D/XRCamera3D/MouthCollider" to="Room" method="_on_mouth_collider_body_entered"]
-[connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_ended"]
-[connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_started"]
+[connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_ended"]
 [connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_started"]
+[connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_exited"]
-[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_ended"]
-[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_started"]
+[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_ended"]
 [connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_started"]
+[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_exited"]
 
