@@ -48,9 +48,8 @@ func _ready() -> void:
 			#pickable_children.append(child)
 	pass
 	xr_interface = XRServer.find_interface("OpenXR")
-	teensy = find_child("Teensy")
-	teensy2 = teensy.duplicate()
-	add_child(teensy2)
+	#teensy = find_child("Teensy")
+	#teensy2 = find_child("Teensy2")
 	
 
 func _process(_delta: float) -> void:
@@ -98,10 +97,10 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	var left_eye_transform = xr_interface.get_transform_for_view(0, origin_node.global_transform)
 	var right_eye_transform = xr_interface.get_transform_for_view(1, origin_node.global_transform)
-	teensy.transform = left_eye_transform
-	teensy.position -= teensy.transform.basis.z * 0.075
-	teensy2.transform = right_eye_transform
-	teensy2.position -= teensy2.transform.basis.z * 0.075
+	#teensy.transform = left_eye_transform
+	#teensy.position -= teensy.transform.basis.z * 0.075
+	#teensy2.transform = right_eye_transform
+	#teensy2.position -= teensy2.transform.basis.z * 0.075
 		
 func rescale(rescale_factor: float):
 	self.scale *= rescale_factor

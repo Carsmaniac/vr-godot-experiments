@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5r070hix8jlh"
-path.s3tc="res://.godot/imported/carpet.jpg-d272b8ded84e300435ef8627abfbaaec.s3tc.ctex"
-path.etc2="res://.godot/imported/carpet.jpg-d272b8ded84e300435ef8627abfbaaec.etc2.ctex"
+uid="uid://c0dwo1jl6f6g8"
+path.s3tc="res://.godot/imported/lino_floor.jpg-2ae010f54bb1342764a7efe783d12498.s3tc.ctex"
+path.etc2="res://.godot/imported/lino_floor.jpg-2ae010f54bb1342764a7efe783d12498.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://carpet.jpg"
-dest_files=["res://.godot/imported/carpet.jpg-d272b8ded84e300435ef8627abfbaaec.s3tc.ctex", "res://.godot/imported/carpet.jpg-d272b8ded84e300435ef8627abfbaaec.etc2.ctex"]
+source_file="res://room/lino_floor.jpg"
+dest_files=["res://.godot/imported/lino_floor.jpg-2ae010f54bb1342764a7efe783d12498.s3tc.ctex", "res://.godot/imported/lino_floor.jpg-2ae010f54bb1342764a7efe783d12498.etc2.ctex"]
 
 [params]
 

@@ -1,87 +1,46 @@
-[gd_scene format=4 uid="uid://y0j46ct8rv7f"]
+[gd_scene format=4 uid="uid://40sjxij3gh85"]
 
-[ext_resource type="Script" uid="uid://7k20cvcu5d1e" path="res://main.gd" id="1_3t01i"]
-[ext_resource type="PackedScene" uid="uid://cjcehqrfoxav3" path="res://addons/hand_pose_detector/hands/LeftHandHumanoid.gltf" id="2_qj6xm"]
-[ext_resource type="Script" uid="uid://hji4ff2eltcs" path="res://gesture_controller.gd" id="3_d4o4o"]
-[ext_resource type="Resource" uid="uid://ckjd0xa2a240p" path="res://addons/hand_pose_detector/poses/standard_pose_set.tres" id="4_aw253"]
-[ext_resource type="Script" uid="uid://bh6hebwxe77od" path="res://pickable_object.gd" id="4_dg77c"]
-[ext_resource type="PackedScene" uid="uid://dabmoo0spa6vg" path="res://addons/hand_pose_detector/hands/RightHandHumanoid.gltf" id="4_uvuof"]
-[ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="5_0abgo"]
-[ext_resource type="PackedScene" uid="uid://stfly1wugymu" path="res://objects/Cupcake.glb" id="5_yaehf"]
-[ext_resource type="PackedScene" uid="uid://bq88kqwoppprt" path="res://assets/monster_can/pink_monster_can.glb" id="5_ycdy4"]
-[ext_resource type="Script" uid="uid://b0whku4lmxepw" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="7_ownji"]
-[ext_resource type="Texture2D" uid="uid://c0dwo1jl6f6g8" path="res://room/lino-floor.jpg" id="7_vivmo"]
-[ext_resource type="Texture2D" uid="uid://rucqumuns36r" path="res://room/paint.jpg" id="8_2cqfq"]
-[ext_resource type="Resource" uid="uid://ra50ueubhepa" path="res://addons/hand_pose_detector/poses/point_thumb_up.tres" id="8_pcf64"]
-[ext_resource type="ArrayMesh" uid="uid://bov215jjjfkc7" path="res://objects/table/model.obj" id="8_yaehf"]
-[ext_resource type="Script" uid="uid://50qjwo2axg0s" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="9_ux58f"]
-[ext_resource type="ArrayMesh" uid="uid://cg2ggj5r3ytb6" path="res://objects/WallShelf.obj" id="9_yaehf"]
-[ext_resource type="Script" uid="uid://c0u0bn7usyke8" path="res://picking_collider.gd" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://7k20cvcu5d1e" path="res://vr_initialiser.gd" id="1_3ih3s"]
+[ext_resource type="Texture2D" uid="uid://343jx1dbx0kf" path="res://room/diamondplate.jpg" id="1_jqak5"]
+[ext_resource type="Texture2D" uid="uid://dx4haqsjsrgh" path="res://room/distressed_concrete.jpg" id="2_3ih3s"]
+[ext_resource type="LightmapGIData" uid="uid://ctyekwxma6qlj" path="res://incorrect_objects.lmbake" id="2_vmaxf"]
+[ext_resource type="PackedScene" uid="uid://cjcehqrfoxav3" path="res://addons/hand_pose_detector/hands/LeftHandHumanoid.gltf" id="3_p1ihj"]
+[ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="4_vmaxf"]
+[ext_resource type="Script" uid="uid://b0whku4lmxepw" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="5_2r0hu"]
+[ext_resource type="Resource" uid="uid://ra50ueubhepa" path="res://addons/hand_pose_detector/poses/point_thumb_up.tres" id="6_yewnj"]
+[ext_resource type="Script" uid="uid://50qjwo2axg0s" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="7_arjme"]
+[ext_resource type="Resource" uid="uid://ckjd0xa2a240p" path="res://addons/hand_pose_detector/poses/standard_pose_set.tres" id="8_scbhu"]
+[ext_resource type="Script" uid="uid://c0u0bn7usyke8" path="res://picking_collider.gd" id="9_65fd0"]
+[ext_resource type="PackedScene" uid="uid://dabmoo0spa6vg" path="res://addons/hand_pose_detector/hands/RightHandHumanoid.gltf" id="10_iwg0v"]
+[ext_resource type="PackedScene" uid="uid://colhn0o7ip37t" path="res://objects/lamp.glb" id="12_p1ihj"]
+[ext_resource type="Script" uid="uid://bh6hebwxe77od" path="res://pickable_object.gd" id="14_yewnj"]
+[ext_resource type="PackedScene" uid="uid://bq88kqwoppprt" path="res://assets/monster_can/pink_monster_can.glb" id="15_arjme"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
-size = Vector3(10.0859375, 0.5130615, 9.702148)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ml5h2"]
+albedo_texture = ExtResource("1_jqak5")
+uv1_scale = Vector3(10, 10, 1)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ycdy4"]
-height = 0.17
-radius = 0.041503906
+[sub_resource type="PlaneMesh" id="PlaneMesh_5gjwt"]
+lightmap_size_hint = Vector2i(52, 52)
+material = SubResource("StandardMaterial3D_ml5h2")
+add_uv2 = true
+size = Vector2(10, 10)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_074og"]
-height = 0.14892578
-radius = 0.06298828
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0s4f"]
+size = Vector3(2, 1.2705586, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2cqfq"]
-albedo_texture = ExtResource("7_vivmo")
-uv1_scale = Vector3(10, 10, 10)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3onw"]
+albedo_texture = ExtResource("2_3ih3s")
+uv1_scale = Vector3(10, 3, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_yaehf"]
-material = SubResource("StandardMaterial3D_2cqfq")
+[sub_resource type="PlaneMesh" id="PlaneMesh_hrctm"]
+lightmap_size_hint = Vector2i(52, 17)
+material = SubResource("StandardMaterial3D_q3onw")
+add_uv2 = true
+size = Vector2(10, 3)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_074og"]
-size = Vector3(10, 0.1, 10)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cegan"]
-albedo_texture = ExtResource("8_2cqfq")
-uv1_scale = Vector3(10, 10, 10)
-
-[sub_resource type="BoxMesh" id="BoxMesh_82xsv"]
-material = SubResource("StandardMaterial3D_cegan")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_getpj"]
-albedo_color = Color(0.9099439, 0.9387003, 1, 1)
-albedo_texture = ExtResource("8_2cqfq")
-uv1_scale = Vector3(10, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ryguw"]
-material = SubResource("StandardMaterial3D_getpj")
-size = Vector3(10, 3.5, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_d13ii"]
-size = Vector3(10, 3.5, 0.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cegan"]
-size = Vector3(1.7099609, 0.052490234, 1.0302734)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_82xsv"]
-size = Vector3(0.4813385, 0.049743652, 1.3818359)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_yaehf"]
-radius = 0.005
-height = 0.02
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gp80n"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_wwtaq"]
-sky_material = SubResource("ProceduralSkyMaterial_gp80n")
-
-[sub_resource type="Environment" id="Environment_42o4x"]
-background_mode = 2
-sky = SubResource("Sky_wwtaq")
-tonemap_mode = 2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
-size = Vector3(0.068603516, 0.028320313, 0.038085938)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yi1yi"]
+size = Vector3(0.107788086, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2gs6"]
 resource_name = "Hand"
@@ -89,7 +48,7 @@ cull_mode = 2
 albedo_color = Color(0.6148799, 0.27719998, 0.84, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_17q51"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ar4on"]
 resource_name = "LeftHandHumanoid_LeftHandHumanoid"
 _surfaces = [{
 "aabb": AABB(-0.0299463, -0.0683837, -0.185423, 0.0650968, 0.158395, 0.211192),
@@ -109,7 +68,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_jphv2"]
+[sub_resource type="Skin" id="Skin_4xbbd"]
 resource_name = "Skin"
 bind_count = 25
 bind/0/name = &"LeftHand"
@@ -189,15 +148,15 @@ bind/24/bone = -1
 bind/24/pose = Transform3D(-0.0340048, -0.961705, 0.271969, 0.359157, -0.265706, -0.894655, 0.932658, 0.0672569, 0.354438, -0.0260868, -0.135553, 0.0427634)
 
 [sub_resource type="Resource" id="Resource_pugay"]
-script = ExtResource("7_ownji")
-pose = ExtResource("8_pcf64")
+script = ExtResource("5_2r0hu")
+pose = ExtResource("6_yewnj")
 action_name = "point_thumb_up"
 
-[sub_resource type="Resource" id="Resource_gbdrn"]
-script = ExtResource("9_ux58f")
-actions = Array[ExtResource("7_ownji")]([SubResource("Resource_pugay")])
+[sub_resource type="Resource" id="Resource_wpgf1"]
+script = ExtResource("7_arjme")
+actions = Array[ExtResource("5_2r0hu")]([SubResource("Resource_pugay")])
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4ej0"]
 size = Vector3(0.119018555, 0.12182617, 0.13311768)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_073d2"]
@@ -206,7 +165,7 @@ cull_mode = 2
 albedo_color = Color(0.6156863, 0.2784314, 0.8392157, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_c6da4"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_6c3dy"]
 resource_name = "RightHandHumanoid_RightHandHumanoid"
 _surfaces = [{
 "aabb": AABB(-0.0357396, -0.0683837, -0.185423, 0.0650968, 0.158395, 0.21123),
@@ -226,7 +185,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_ivlc3"]
+[sub_resource type="Skin" id="Skin_u15vi"]
 resource_name = "Skin"
 bind_count = 25
 bind/0/name = &"RightHand"
@@ -305,7 +264,7 @@ bind/24/name = &"RightLittleTip"
 bind/24/bone = -1
 bind/24/pose = Transform3D(-0.0340048, 0.961705, -0.271969, -0.359157, -0.265706, -0.894655, -0.932658, 0.0672569, 0.354438, 0.0260868, -0.135553, 0.0427634)
 
-[sub_resource type="GDScript" id="GDScript_tpxpg"]
+[sub_resource type="GDScript" id="GDScript_6462j"]
 script/source = "extends XRController3D
 
 
@@ -314,13 +273,13 @@ func _process(_delta: float) -> void:
 	$Aim.visible = is_button_pressed(\"point_thumb_up\")
 "
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_oevpt"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yjag8"]
 radius = 0.01
 height = 0.05
 radial_segments = 6
 rings = 3
 
-[sub_resource type="GDScript" id="GDScript_xq4qg"]
+[sub_resource type="GDScript" id="GDScript_r3mjb"]
 script/source = "extends XRController3D
 
 
@@ -329,163 +288,55 @@ func _process(_delta: float) -> void:
 	$Aim.visible = is_button_pressed(\"point_thumb_up\")
 "
 
-[node name="Demo" type="Node3D" unique_id=626827104]
-script = ExtResource("1_3t01i")
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_scbhu"]
+height = 0.17
+radius = 0.041503906
 
-[node name="Room" type="Node3D" parent="." unique_id=314653956 node_paths=PackedStringArray("origin_node", "left_hand", "right_hand")]
-script = ExtResource("3_d4o4o")
-origin_node = NodePath("../XROrigin3D")
-left_hand = NodePath("../XROrigin3D/LeftTrackedHand")
-right_hand = NodePath("../XROrigin3D/RightTrackedHand")
+[node name="Node3D" type="Node3D" unique_id=1850405703]
+script = ExtResource("1_3ih3s")
 
-[node name="Floor" type="StaticBody3D" parent="Room" unique_id=93213409]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.584427e-05, 0.0012871027, -0.001462251)
+[node name="BakedLighting" type="LightmapGI" parent="." unique_id=1053442312]
+quality = 2
+supersampling = true
+light_data = ExtResource("2_vmaxf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Floor" unique_id=1078925040]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24346924, 0)
-shape = SubResource("BoxShape3D_ycdy4")
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=700010127]
+transform = Transform3D(1, 0, 0, 0, -0.36079454, 0.9326453, 0, -0.9326453, -0.36079454, 0, 2.166974, 0)
+light_energy = 0.35
 
-[node name="CanNode" type="Node3D" parent="Room" unique_id=1031923525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0825648, 2.1201873, 0.058734775)
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1018832171]
 
-[node name="ShrinkingCan" type="RigidBody3D" parent="Room/CanNode" unique_id=307466439]
-script = ExtResource("4_dg77c")
-eatable_object = true
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1972156356]
+mesh = SubResource("PlaneMesh_5gjwt")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/CanNode/ShrinkingCan" unique_id=1154258477]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00061035156, 0)
-shape = SubResource("CylinderShape3D_ycdy4")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=794751486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6367544, 0)
+shape = SubResource("BoxShape3D_i0s4f")
 
-[node name="MonsterCan" parent="Room/CanNode/ShrinkingCan" unique_id=2035225325 instance=ExtResource("5_ycdy4")]
-transform = Transform3D(-3.6641278, 0, 0.5555213, 0, 3.706, 0, -0.5555213, 0, -3.6641278, 0, 0, 0)
+[node name="Wall" type="StaticBody3D" parent="." unique_id=668978667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
 
-[node name="CupcakeNode" type="Node3D" parent="Room" unique_id=1961798052]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32492355, 0.8700905, -0.30549437)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1849994482]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_hrctm")
 
-[node name="GrowingCake" type="RigidBody3D" parent="Room/CupcakeNode" unique_id=857324612]
-script = ExtResource("4_dg77c")
-eatable_object = true
-eating_increases_scale = true
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1745148363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039123535, 0, 0)
+shape = SubResource("BoxShape3D_yi1yi")
 
-[node name="CupcakeModel" parent="Room/CupcakeNode/GrowingCake" unique_id=2022919222 instance=ExtResource("5_yaehf")]
-transform = Transform3D(0.104240656, 0, 0.17068651, 0, 0.2, 0, -0.17068651, 0, 0.104240656, 0.0035727024, -0.04627192, -0.010056257)
+[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=165556515]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/CupcakeNode/GrowingCake" unique_id=1625457381]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0007324219, 0)
-shape = SubResource("CylinderShape3D_074og")
-
-[node name="RoomModel" type="Node3D" parent="Room" unique_id=358047910]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-
-[node name="Floor" type="StaticBody3D" parent="Room/RoomModel" unique_id=1222149265]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Floor" unique_id=865345567]
-transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
-mesh = SubResource("BoxMesh_yaehf")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Floor" unique_id=574656924]
-shape = SubResource("BoxShape3D_074og")
-
-[node name="Ceiling" type="StaticBody3D" parent="Room/RoomModel" unique_id=1004053674]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Ceiling" unique_id=1855634520]
-transform = Transform3D(10, 0, 0, 0, 0.1, 0, 0, 0, 10, 0, 0, 0)
-mesh = SubResource("BoxMesh_82xsv")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Ceiling" unique_id=698864684]
-shape = SubResource("BoxShape3D_074og")
-
-[node name="Wall" type="StaticBody3D" parent="Room/RoomModel" unique_id=1072200530]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Wall" unique_id=1824376243]
-mesh = SubResource("BoxMesh_ryguw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Wall" unique_id=82154371]
-shape = SubResource("BoxShape3D_d13ii")
-
-[node name="Wall2" type="StaticBody3D" parent="Room/RoomModel" unique_id=1688238977]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, -5)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Wall2" unique_id=1024860307]
-mesh = SubResource("BoxMesh_ryguw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Wall2" unique_id=1659204429]
-shape = SubResource("BoxShape3D_d13ii")
-
-[node name="Wall3" type="StaticBody3D" parent="Room/RoomModel" unique_id=1270402790]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5, 1.75, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Wall3" unique_id=9376522]
-mesh = SubResource("BoxMesh_ryguw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Wall3" unique_id=261543789]
-shape = SubResource("BoxShape3D_d13ii")
-
-[node name="Wall4" type="StaticBody3D" parent="Room/RoomModel" unique_id=1363680338]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 1.75, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/RoomModel/Wall4" unique_id=1830194556]
-mesh = SubResource("BoxMesh_ryguw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/RoomModel/Wall4" unique_id=1213603160]
-shape = SubResource("BoxShape3D_d13ii")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Room" unique_id=1760506533]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.584427e-05, 3.0848508, -0.001462251)
-omni_range = 18.587446
-
-[node name="Table" type="StaticBody3D" parent="Room" unique_id=1365843782]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18833065, 0.66784155, -0.6581484)
-
-[node name="TableModel" type="MeshInstance3D" parent="Room/Table" unique_id=265873281]
-mesh = ExtResource("8_yaehf")
-skeleton = NodePath("../../RoomModel/Wall3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Table" unique_id=1686372243]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10140991, -0.0029296875)
-shape = SubResource("BoxShape3D_cegan")
-
-[node name="WallShelf" type="StaticBody3D" parent="Room" unique_id=1823326073]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7613215, 1.880448, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/WallShelf" unique_id=1245357832]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035255432, 0.10531616, 0)
-shape = SubResource("BoxShape3D_82xsv")
-
-[node name="WallShelfModel" type="MeshInstance3D" parent="Room/WallShelf" unique_id=1689065171]
-transform = Transform3D(-0.6, 0, -5.2453668e-08, 0, 0.6, 0, 5.2453668e-08, 0, -0.6, -0.12695551, -0.05630195, 0)
-mesh = ExtResource("9_yaehf")
-
-[node name="Teensy" type="Node3D" parent="Room" unique_id=466588676]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Room/Teensy" unique_id=1505528390]
-mesh = SubResource("CapsuleMesh_yaehf")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1613755615]
-environment = SubResource("Environment_42o4x")
-
-[node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=1460347390]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=150682221]
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=1898007125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
+near = 0.005
 
-[node name="MouthCollider" type="Area3D" parent="XROrigin3D/XRCamera3D" unique_id=1813804890]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -0.1)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/XRCamera3D/MouthCollider" unique_id=246654396]
-shape = SubResource("BoxShape3D_w48qg")
-
-[node name="LeftTrackedHand" type="XRNode3D" parent="XROrigin3D" unique_id=968439347]
+[node name="LeftTrackedHand" type="XRNode3D" parent="XROrigin3D" unique_id=267726070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, 0)
 tracker = &"/user/hand_tracker/left"
 show_when_tracked = true
 
-[node name="LeftHandHumanoid" parent="XROrigin3D/LeftTrackedHand" unique_id=1213205645 instance=ExtResource("2_qj6xm")]
+[node name="LeftHandHumanoid" parent="XROrigin3D/LeftTrackedHand" unique_id=463245915 instance=ExtResource("3_p1ihj")]
 
 [node name="Skeleton3D" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid" index="0"]
 bones/0/rest = Transform3D(1.78814e-07, -1.8388e-05, 1, -0.999999, 0.00166774, 1.78814e-07, -0.00166765, -0.999998, -1.83582e-05, 3.86425e-08, -1.86975e-05, 0.0271756)
@@ -590,29 +441,29 @@ bones/24/rotation = Quaternion(0.035952296, -0.020332856, 0.013369262, 0.9990572
 bones/24/scale = Vector3(1.0000004, 0.99999964, 0.99999994)
 
 [node name="LeftHandHumanoidMesh" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid/Skeleton3D" index="0"]
-mesh = SubResource("ArrayMesh_17q51")
-skin = SubResource("Skin_jphv2")
+mesh = SubResource("ArrayMesh_ar4on")
+skin = SubResource("Skin_4xbbd")
 
-[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid/Skeleton3D" index="1" unique_id=760710131]
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid/Skeleton3D" index="1" unique_id=1177608542]
 
-[node name="LeftHandPose" parent="XROrigin3D/LeftTrackedHand" unique_id=1488948832 instance=ExtResource("5_0abgo")]
-controller_action_map = SubResource("Resource_gbdrn")
-hand_pose_set = ExtResource("4_aw253")
+[node name="LeftHandPose" parent="XROrigin3D/LeftTrackedHand" unique_id=401925768 instance=ExtResource("4_vmaxf")]
+controller_action_map = SubResource("Resource_wpgf1")
+hand_pose_set = ExtResource("8_scbhu")
 
-[node name="PickingCollider" type="Area3D" parent="XROrigin3D/LeftTrackedHand" unique_id=630591767]
+[node name="PickingCollider" type="Area3D" parent="XROrigin3D/LeftTrackedHand" unique_id=2123834129]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07284686, 0, 0.131)
-script = ExtResource("11_efxa6")
+script = ExtResource("9_65fd0")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftTrackedHand/PickingCollider" unique_id=140421228]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/LeftTrackedHand/PickingCollider" unique_id=556319194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059143066, 0.0115869045, -0.07319458)
-shape = SubResource("BoxShape3D_dg77c")
+shape = SubResource("BoxShape3D_k4ej0")
 
-[node name="RightTrackedHand" type="XRNode3D" parent="XROrigin3D" unique_id=483503436]
+[node name="RightTrackedHand" type="XRNode3D" parent="XROrigin3D" unique_id=367608608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1, 0)
 tracker = &"/user/hand_tracker/right"
 show_when_tracked = true
 
-[node name="RightHandHumanoid" parent="XROrigin3D/RightTrackedHand" unique_id=425289224 instance=ExtResource("4_uvuof")]
+[node name="RightHandHumanoid" parent="XROrigin3D/RightTrackedHand" unique_id=1841458398 instance=ExtResource("10_iwg0v")]
 
 [node name="Skeleton3D" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid" index="0"]
 bones/0/rest = Transform3D(1.78814e-07, 1.8388e-05, -1, 0.999999, 0.00166774, 1.78814e-07, 0.00166765, -0.999998, -1.83582e-05, -3.86425e-08, -1.86975e-05, 0.0271756)
@@ -717,55 +568,75 @@ bones/24/rotation = Quaternion(0.035952296, 0.020332856, -0.013369262, 0.9990572
 bones/24/scale = Vector3(1.0000004, 0.99999964, 0.99999994)
 
 [node name="RightHandHumanoidMesh" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid/Skeleton3D" index="0"]
-mesh = SubResource("ArrayMesh_c6da4")
-skin = SubResource("Skin_ivlc3")
+mesh = SubResource("ArrayMesh_6c3dy")
+skin = SubResource("Skin_u15vi")
 
-[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid/Skeleton3D" index="1" unique_id=1930502706]
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid/Skeleton3D" index="1" unique_id=143886903]
 hand_tracker = &"/user/hand_tracker/right"
 
-[node name="RightHandPose" parent="XROrigin3D/RightTrackedHand" unique_id=752751648 instance=ExtResource("5_0abgo")]
+[node name="RightHandPose" parent="XROrigin3D/RightTrackedHand" unique_id=1122138190 instance=ExtResource("4_vmaxf")]
 controller_tracker_name = "/user/hand_pose_controller/right"
-controller_action_map = SubResource("Resource_gbdrn")
+controller_action_map = SubResource("Resource_wpgf1")
 hand_tracker_name = "/user/hand_tracker/right"
-hand_pose_set = ExtResource("4_aw253")
+hand_pose_set = ExtResource("8_scbhu")
 
-[node name="PickingCollider" type="Area3D" parent="XROrigin3D/RightTrackedHand" unique_id=1352264496]
+[node name="PickingCollider" type="Area3D" parent="XROrigin3D/RightTrackedHand" unique_id=1962914119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07284686, 0, 0.131)
-script = ExtResource("11_efxa6")
+script = ExtResource("9_65fd0")
 which_hand = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightTrackedHand/PickingCollider" unique_id=113588847]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/RightTrackedHand/PickingCollider" unique_id=1903648133]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.059143066, 0.0115869045, -0.07319458)
-shape = SubResource("BoxShape3D_dg77c")
+shape = SubResource("BoxShape3D_k4ej0")
 
-[node name="LeftPoseController" type="XRController3D" parent="XROrigin3D" unique_id=493339628]
+[node name="LeftPoseController" type="XRController3D" parent="XROrigin3D" unique_id=1812773233]
 tracker = &"/user/hand_pose_controller/left"
-script = SubResource("GDScript_tpxpg")
+script = SubResource("GDScript_6462j")
 
-[node name="Aim" type="MeshInstance3D" parent="XROrigin3D/LeftPoseController" unique_id=1209468439]
+[node name="Aim" type="MeshInstance3D" parent="XROrigin3D/LeftPoseController" unique_id=1882749550]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 visible = false
-mesh = SubResource("CapsuleMesh_oevpt")
+mesh = SubResource("CapsuleMesh_yjag8")
 
-[node name="RightPoseController" type="XRController3D" parent="XROrigin3D" unique_id=1180903649]
+[node name="RightPoseController" type="XRController3D" parent="XROrigin3D" unique_id=355438978]
 tracker = &"/user/hand_pose_controller/right"
-script = SubResource("GDScript_xq4qg")
+script = SubResource("GDScript_r3mjb")
 
-[node name="Aim" type="MeshInstance3D" parent="XROrigin3D/RightPoseController" unique_id=114730897]
+[node name="Aim" type="MeshInstance3D" parent="XROrigin3D/RightPoseController" unique_id=1145432632]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 visible = false
-mesh = SubResource("CapsuleMesh_oevpt")
+mesh = SubResource("CapsuleMesh_yjag8")
 
-[connection signal="body_entered" from="XROrigin3D/XRCamera3D/MouthCollider" to="Room" method="_on_mouth_collider_body_entered"]
-[connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_ended"]
+[node name="WorkLight" type="Node3D" parent="." unique_id=984742972]
+transform = Transform3D(0.9113602, 0, -0.4116098, 0, 1, 0, 0.4116098, 0, 0.9113602, 2.4963331, 0, -2.479494)
+
+[node name="Root Scene" parent="WorkLight" unique_id=2082995726 instance=ExtResource("12_p1ihj")]
+transform = Transform3D(0.07515739, 0, 1.4981159, 0, 1.5, 0, -1.4981159, 0, 0.07515739, 0.42095035, -1.2143238, 0.5208896)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorkLight" unique_id=655814389]
+transform = Transform3D(0.9984291, 0.016536906, 0.053534716, -0.0102236215, -0.8856459, 0.4642486, 0.05509004, -0.46406662, -0.88408554, -0.009600997, 2.180736, -0.049664736)
+light_color = Color(0.84, 0.79631996, 0.5124, 1)
+light_energy = 9.585
+light_size = 0.577
+light_bake_mode = 1
+spot_range = 14.463012
+
+[node name="ShrinkingCan" type="RigidBody3D" parent="." unique_id=1327960713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17254198, 0.29846203)
+script = ExtResource("14_yewnj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShrinkingCan" unique_id=1538025784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00061035156, 0)
+shape = SubResource("CylinderShape3D_scbhu")
+
+[node name="MonsterCan" parent="ShrinkingCan" unique_id=2035225325 instance=ExtResource("15_arjme")]
+transform = Transform3D(-3.6641278, 0, 0.5555213, 0, 3.706, 0, -0.5555213, 0, -3.6641278, 0, 0, 0)
+
 [connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_ended"]
-[connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="Room" method="_on_left_pose_started"]
 [connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_exited"]
-[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_ended"]
-[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="Room" method="_on_right_pose_started"]
 [connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_exited"]

@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0dwo1jl6f6g8"
-path.s3tc="res://.godot/imported/lino-floor.jpg-bf918f37b7e6848c913f708211f3e23e.s3tc.ctex"
-path.etc2="res://.godot/imported/lino-floor.jpg-bf918f37b7e6848c913f708211f3e23e.etc2.ctex"
+uid="uid://dx4haqsjsrgh"
+path.s3tc="res://.godot/imported/distressed_concrete.jpg-dd7c4172c60b669b8ef139b6e8ac0a09.s3tc.ctex"
+path.etc2="res://.godot/imported/distressed_concrete.jpg-dd7c4172c60b669b8ef139b6e8ac0a09.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://room/lino-floor.jpg"
-dest_files=["res://.godot/imported/lino-floor.jpg-bf918f37b7e6848c913f708211f3e23e.s3tc.ctex", "res://.godot/imported/lino-floor.jpg-bf918f37b7e6848c913f708211f3e23e.etc2.ctex"]
+source_file="res://room/distressed_concrete.jpg"
+dest_files=["res://.godot/imported/distressed_concrete.jpg-dd7c4172c60b669b8ef139b6e8ac0a09.s3tc.ctex", "res://.godot/imported/distressed_concrete.jpg-dd7c4172c60b669b8ef139b6e8ac0a09.etc2.ctex"]
 
 [params]
 
