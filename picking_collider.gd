@@ -2,6 +2,7 @@ extends Area3D
 
 enum hand_sides{LEFT_HAND, RIGHT_HAND}
 @export var which_hand: hand_sides
+@export var falling_wall: Node
 
 var pickable_objects: Array[Node3D] = []
 var held_object: Node3D
@@ -34,9 +35,11 @@ func _on_right_hand_pose_started(p_name: String) -> void:
 					held_object = obj
 					held_object_prev_parent = obj.get_parent()
 					held_object.reparent(self)
+					held_object.freeze = false
 					held_object.gravity_scale = 0
 					held_object_rel_pos = held_object.position - self.position
 					held_object_rel_rot = held_object.rotation - self.rotation
+					held_object.picked_up.emit()
 
 func _on_right_hand_pose_ended(_p_name: String) -> void:
 	if which_hand == hand_sides.RIGHT_HAND:

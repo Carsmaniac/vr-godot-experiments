@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://7k20cvcu5d1e" path="res://vr_initialiser.gd" id="1_3ih3s"]
 [ext_resource type="Texture2D" uid="uid://343jx1dbx0kf" path="res://room/diamondplate.jpg" id="1_jqak5"]
 [ext_resource type="Texture2D" uid="uid://dx4haqsjsrgh" path="res://room/distressed_concrete.jpg" id="2_3ih3s"]
-[ext_resource type="LightmapGIData" uid="uid://ctyekwxma6qlj" path="res://incorrect_objects.lmbake" id="2_vmaxf"]
+[ext_resource type="Script" uid="uid://hji4ff2eltcs" path="res://gesture_controller.gd" id="2_arjme"]
 [ext_resource type="PackedScene" uid="uid://cjcehqrfoxav3" path="res://addons/hand_pose_detector/hands/LeftHandHumanoid.gltf" id="3_p1ihj"]
+[ext_resource type="Script" uid="uid://dr7f1lcekxq2v" path="res://falling_wall.gd" id="4_arjme"]
 [ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="4_vmaxf"]
 [ext_resource type="Script" uid="uid://b0whku4lmxepw" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="5_2r0hu"]
 [ext_resource type="Resource" uid="uid://ra50ueubhepa" path="res://addons/hand_pose_detector/poses/point_thumb_up.tres" id="6_yewnj"]
@@ -26,21 +27,54 @@ material = SubResource("StandardMaterial3D_ml5h2")
 add_uv2 = true
 size = Vector2(10, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i0s4f"]
-size = Vector3(2, 1.2705586, 2)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65fd0"]
+albedo_color = Color(0.54, 0.34542003, 0.2916, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iwg0v"]
+material = SubResource("StandardMaterial3D_65fd0")
+size = Vector3(1, 2.3, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arjme"]
+albedo_texture = ExtResource("2_3ih3s")
+uv1_scale = Vector3(1, 0.7, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_scbhu"]
+lightmap_size_hint = Vector2i(7, 5)
+material = SubResource("StandardMaterial3D_arjme")
+add_uv2 = true
+size = Vector2(1, 0.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q3onw"]
 albedo_texture = ExtResource("2_3ih3s")
-uv1_scale = Vector3(10, 3, 1)
+uv1_scale = Vector3(4.5, 3, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hrctm"]
-lightmap_size_hint = Vector2i(52, 17)
+lightmap_size_hint = Vector2i(24, 17)
 material = SubResource("StandardMaterial3D_q3onw")
 add_uv2 = true
-size = Vector2(10, 3)
+size = Vector2(4.5, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yi1yi"]
-size = Vector3(0.107788086, 2, 2)
+size = Vector3(9.503906, 3.079834, 0.1171875)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_scbhu"]
+height = 0.17
+radius = 0.041503906
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_arjme"]
+radius = 0.03
+height = 0.15
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_arjme"]
+top_radius = 0.015
+bottom_radius = 0.015
+height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_scbhu"]
+size = Vector3(0.1, 0.005, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i0s4f"]
+size = Vector3(2, 1.2705586, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2gs6"]
 resource_name = "Hand"
@@ -288,43 +322,110 @@ func _process(_delta: float) -> void:
 	$Aim.visible = is_button_pressed(\"point_thumb_up\")
 "
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_scbhu"]
-height = 0.17
-radius = 0.041503906
-
 [node name="Node3D" type="Node3D" unique_id=1850405703]
 script = ExtResource("1_3ih3s")
 
-[node name="BakedLighting" type="LightmapGI" parent="." unique_id=1053442312]
-quality = 2
-supersampling = true
-light_data = ExtResource("2_vmaxf")
+[node name="GestureController" type="Node3D" parent="." unique_id=1905999115 node_paths=PackedStringArray("origin_node", "left_hand", "right_hand")]
+script = ExtResource("2_arjme")
+origin_node = NodePath("../XROrigin3D")
+left_hand = NodePath("../XROrigin3D/LeftTrackedHand")
+right_hand = NodePath("../XROrigin3D/RightTrackedHand")
 
-[node name="Sun" type="DirectionalLight3D" parent="." unique_id=700010127]
+[node name="FirstRoom" type="Node3D" parent="." unique_id=1042095824]
+
+[node name="InitialVisuals" type="Node3D" parent="FirstRoom" unique_id=700365449]
+
+[node name="Sun" type="DirectionalLight3D" parent="FirstRoom/InitialVisuals" unique_id=700010127]
 transform = Transform3D(1, 0, 0, 0, -0.36079454, 0.9326453, 0, -0.9326453, -0.36079454, 0, 2.166974, 0)
 light_energy = 0.35
 
-[node name="Floor" type="StaticBody3D" parent="." unique_id=1018832171]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1972156356]
+[node name="FloorModel" type="MeshInstance3D" parent="FirstRoom/InitialVisuals" unique_id=1972156356]
 mesh = SubResource("PlaneMesh_5gjwt")
+skeleton = NodePath("../../Floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=794751486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6367544, 0)
-shape = SubResource("BoxShape3D_i0s4f")
+[node name="Door" type="Node3D" parent="FirstRoom/InitialVisuals" unique_id=728973440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
-[node name="Wall" type="StaticBody3D" parent="." unique_id=668978667]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="FirstRoom/InitialVisuals/Door" unique_id=1125198151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+mesh = SubResource("BoxMesh_iwg0v")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1849994482]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+[node name="Wall" type="Node3D" parent="FirstRoom/InitialVisuals" unique_id=292782100 node_paths=PackedStringArray("door_node", "door_handle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+script = ExtResource("4_arjme")
+door_node = NodePath("../Door")
+door_handle = NodePath("../../DoorHandle")
+
+[node name="Wall" type="StaticBody3D" parent="FirstRoom/InitialVisuals/Wall" unique_id=668978667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="FirstRoom/InitialVisuals/Wall/Wall" unique_id=1675344115]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.15, 0)
+mesh = SubResource("PlaneMesh_scbhu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FirstRoom/InitialVisuals/Wall/Wall" unique_id=505066150]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -2.75, 0, 0)
 mesh = SubResource("PlaneMesh_hrctm")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=1745148363]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="FirstRoom/InitialVisuals/Wall/Wall" unique_id=1498492546]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.75, 0, 0)
+mesh = SubResource("PlaneMesh_hrctm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstRoom/InitialVisuals/Wall/Wall" unique_id=1745148363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039123535, 0, 0)
 shape = SubResource("BoxShape3D_yi1yi")
 
+[node name="WorkLight" type="Node3D" parent="FirstRoom/InitialVisuals" unique_id=984742972]
+transform = Transform3D(0.9113602, 0, -0.4116098, 0, 1, 0, 0.4116098, 0, 0.9113602, 2.4963331, 0, -2.479494)
+
+[node name="Root Scene" parent="FirstRoom/InitialVisuals/WorkLight" unique_id=2082995726 instance=ExtResource("12_p1ihj")]
+transform = Transform3D(0.07515739, 0, 1.4981159, 0, 1.5, 0, -1.4981159, 0, 0.07515739, 0.42095035, -1.2143238, 0.5208896)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="FirstRoom/InitialVisuals/WorkLight" unique_id=655814389]
+transform = Transform3D(0.9984291, 0.016536906, 0.053534716, -0.0102236215, -0.8856459, 0.4642486, 0.05509004, -0.46406662, -0.88408554, -0.009600997, 2.180736, -0.049664736)
+light_color = Color(0.84, 0.79631996, 0.5124, 1)
+light_energy = 9.585
+light_size = 0.577
+light_bake_mode = 1
+spot_range = 14.463012
+
+[node name="ShrinkingCan" type="RigidBody3D" parent="FirstRoom" unique_id=1327960713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17254198, 0.29846203)
+script = ExtResource("14_yewnj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstRoom/ShrinkingCan" unique_id=1538025784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00061035156, 0)
+shape = SubResource("CylinderShape3D_scbhu")
+
+[node name="MonsterCan" parent="FirstRoom/ShrinkingCan" unique_id=2035225325 instance=ExtResource("15_arjme")]
+transform = Transform3D(-3.6641278, 0, 0.5555213, 0, 3.706, 0, -0.5555213, 0, -3.6641278, 0, 0, 0)
+
+[node name="DoorHandle" type="RigidBody3D" parent="FirstRoom" unique_id=168082214]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.39443964, 0.9925613, 4.952117)
+freeze = true
+script = ExtResource("14_yewnj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstRoom/DoorHandle" unique_id=2095742853]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.041252553, -0.01660347, 9.706893e-10)
+shape = SubResource("CapsuleShape3D_arjme")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FirstRoom/DoorHandle" unique_id=395994809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.010408878, 0)
+mesh = SubResource("CylinderMesh_arjme")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FirstRoom/DoorHandle" unique_id=1457647162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04988441, -0.03733158, 0)
+mesh = SubResource("BoxMesh_scbhu")
+
+[node name="Floor" type="StaticBody3D" parent="FirstRoom" unique_id=1018832171]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstRoom/Floor" unique_id=794751486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6367544, 0)
+shape = SubResource("BoxShape3D_i0s4f")
+
 [node name="XROrigin3D" type="XROrigin3D" parent="." unique_id=165556515]
+transform = Transform3D(-0.9659258, 0, -0.25881913, 0, 1, 0, 0.25881913, 0, -0.9659258, 0, 0, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=1898007125]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
@@ -338,7 +439,7 @@ show_when_tracked = true
 
 [node name="LeftHandHumanoid" parent="XROrigin3D/LeftTrackedHand" unique_id=463245915 instance=ExtResource("3_p1ihj")]
 
-[node name="Skeleton3D" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid" index="0"]
+[node name="Skeleton3D" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid" parent_id_path=PackedInt32Array(463245915, 320821565) index="0" unique_id=1080248452]
 bones/0/rest = Transform3D(1.78814e-07, -1.8388e-05, 1, -0.999999, 0.00166774, 1.78814e-07, -0.00166765, -0.999998, -1.83582e-05, 3.86425e-08, -1.86975e-05, 0.0271756)
 bones/0/position = Vector3(3.86425e-08, -1.86975e-05, 0.0271756)
 bones/0/rotation = Quaternion(-0.49958754, 0.5004212, -0.49957824, 0.5004122)
@@ -440,7 +541,7 @@ bones/24/position = Vector3(-5.82077e-10, 0.01959, 8.3819e-09)
 bones/24/rotation = Quaternion(0.035952296, -0.020332856, 0.013369262, 0.9990572)
 bones/24/scale = Vector3(1.0000004, 0.99999964, 0.99999994)
 
-[node name="LeftHandHumanoidMesh" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid/Skeleton3D" index="0"]
+[node name="LeftHandHumanoidMesh" parent="XROrigin3D/LeftTrackedHand/LeftHandHumanoid/LeftHandHumanoid/Skeleton3D" index="0" unique_id=2049395046]
 mesh = SubResource("ArrayMesh_ar4on")
 skin = SubResource("Skin_4xbbd")
 
@@ -465,7 +566,7 @@ show_when_tracked = true
 
 [node name="RightHandHumanoid" parent="XROrigin3D/RightTrackedHand" unique_id=1841458398 instance=ExtResource("10_iwg0v")]
 
-[node name="Skeleton3D" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid" index="0"]
+[node name="Skeleton3D" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid" parent_id_path=PackedInt32Array(1841458398, 1406058122) index="0" unique_id=453418447]
 bones/0/rest = Transform3D(1.78814e-07, 1.8388e-05, -1, 0.999999, 0.00166774, 1.78814e-07, 0.00166765, -0.999998, -1.83582e-05, -3.86425e-08, -1.86975e-05, 0.0271756)
 bones/0/position = Vector3(-3.86425e-08, -1.86975e-05, 0.0271756)
 bones/0/rotation = Quaternion(-0.49958754, -0.5004212, 0.49957824, 0.5004122)
@@ -567,7 +668,7 @@ bones/24/position = Vector3(5.82077e-10, 0.01959, 8.3819e-09)
 bones/24/rotation = Quaternion(0.035952296, 0.020332856, -0.013369262, 0.9990572)
 bones/24/scale = Vector3(1.0000004, 0.99999964, 0.99999994)
 
-[node name="RightHandHumanoidMesh" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid/Skeleton3D" index="0"]
+[node name="RightHandHumanoidMesh" parent="XROrigin3D/RightTrackedHand/RightHandHumanoid/RightHandHumanoid/Skeleton3D" index="0" unique_id=236083329]
 mesh = SubResource("ArrayMesh_6c3dy")
 skin = SubResource("Skin_u15vi")
 
@@ -607,36 +708,15 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 visible = false
 mesh = SubResource("CapsuleMesh_yjag8")
 
-[node name="WorkLight" type="Node3D" parent="." unique_id=984742972]
-transform = Transform3D(0.9113602, 0, -0.4116098, 0, 1, 0, 0.4116098, 0, 0.9113602, 2.4963331, 0, -2.479494)
-
-[node name="Root Scene" parent="WorkLight" unique_id=2082995726 instance=ExtResource("12_p1ihj")]
-transform = Transform3D(0.07515739, 0, 1.4981159, 0, 1.5, 0, -1.4981159, 0, 0.07515739, 0.42095035, -1.2143238, 0.5208896)
-
-[node name="SpotLight3D" type="SpotLight3D" parent="WorkLight" unique_id=655814389]
-transform = Transform3D(0.9984291, 0.016536906, 0.053534716, -0.0102236215, -0.8856459, 0.4642486, 0.05509004, -0.46406662, -0.88408554, -0.009600997, 2.180736, -0.049664736)
-light_color = Color(0.84, 0.79631996, 0.5124, 1)
-light_energy = 9.585
-light_size = 0.577
-light_bake_mode = 1
-spot_range = 14.463012
-
-[node name="ShrinkingCan" type="RigidBody3D" parent="." unique_id=1327960713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17254198, 0.29846203)
-script = ExtResource("14_yewnj")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ShrinkingCan" unique_id=1538025784]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00061035156, 0)
-shape = SubResource("CylinderShape3D_scbhu")
-
-[node name="MonsterCan" parent="ShrinkingCan" unique_id=2035225325 instance=ExtResource("15_arjme")]
-transform = Transform3D(-3.6641278, 0, 0.5555213, 0, 3.706, 0, -0.5555213, 0, -3.6641278, 0, 0, 0)
-
+[connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="GestureController" method="_on_left_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_ended"]
+[connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="GestureController" method="_on_left_pose_started"]
 [connection signal="pose_started" from="XROrigin3D/LeftTrackedHand/LeftHandPose" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_left_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/LeftTrackedHand/PickingCollider" to="XROrigin3D/LeftTrackedHand/PickingCollider" method="_on_body_exited"]
+[connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="GestureController" method="_on_right_pose_ended"]
 [connection signal="pose_ended" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_ended"]
+[connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="GestureController" method="_on_right_pose_started"]
 [connection signal="pose_started" from="XROrigin3D/RightTrackedHand/RightHandPose" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_right_hand_pose_started"]
 [connection signal="body_entered" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_entered"]
 [connection signal="body_exited" from="XROrigin3D/RightTrackedHand/PickingCollider" to="XROrigin3D/RightTrackedHand/PickingCollider" method="_on_body_exited"]

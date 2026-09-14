@@ -20,7 +20,7 @@ var min_size = 0.5
 var max_size = 3
 
 var movement_enabled = true
-var mini_experiment: int = 9
+var mini_experiment: int = 0
 # 1: greater variations in user scale (fist)
 # 2: user scale that changes over time (fist)
 # 3: (not possible in Godot?)
