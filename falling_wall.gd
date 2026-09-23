@@ -17,6 +17,18 @@ func _process(_delta: float) -> void:
 			falling_speed *= 1.065
 		else:
 			self.rotation.x = deg_to_rad(90)
+			falling = false
+			stop_falling()
 
 func start_falling() -> void:
 	falling = true
+
+func stop_falling() -> void:
+	get_node("ThudPlayer").play(0.18)
+	await get_tree().create_timer(2).timeout
+	get_node("BuildupPlayer").play()
+
+func room_pop() -> void:
+	get_node("PopPlayer").play()
+	get_node("%FirstRoom").visible = false
+	get_node("%TransformedRoom").visible = true

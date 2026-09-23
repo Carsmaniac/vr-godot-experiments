@@ -60,7 +60,7 @@ func _on_left_hand_pose_started(p_name: String) -> void:
 					held_object.gravity_scale = 0
 					held_object_rel_pos = held_object.position - self.position
 					held_object_rel_rot = held_object.rotation - self.rotation
-	
+					held_object.picked_up.emit()
 
 func _on_left_hand_pose_ended(_p_name: String) -> void:
 	if which_hand == hand_sides.LEFT_HAND:
