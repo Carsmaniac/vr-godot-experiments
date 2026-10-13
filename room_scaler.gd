@@ -12,7 +12,7 @@ var constant_size_change = 1.007
 var step_size_change = 1.2
 var point_direction_threshold = 70
 
-var mini_experiment: int = 8
+var mini_experiment: int = 0
 # 1: greater variations in user scale (fist)
 # 2: user scale that changes over time (fist)
 # 3: (not possible in Godot?)

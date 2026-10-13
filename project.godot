@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="VRGodotExperiments"
 config/description="Godot XR Hand Pose Detector"
-run/main_scene="uid://40sjxij3gh85"
+run/main_scene="uid://cjqv5q1dtl4u3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://dnwrrbdetixxm"
 

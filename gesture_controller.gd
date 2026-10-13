@@ -46,11 +46,14 @@ func _ready() -> void:
 	#for child in get_children():
 		#if child.get_child(0) is PickableObject:
 			#pickable_children.append(child)
-	pass
 	xr_interface = XRServer.find_interface("OpenXR")
 	#teensy = find_child("Teensy")
 	#teensy2 = find_child("Teensy2")
-	
+	left_hand.get_node("LeftHandPose").pose_started.connect(_on_left_pose_started)
+	left_hand.get_node("LeftHandPose").pose_ended.connect(_on_left_pose_ended)
+	right_hand.get_node("RightHandPose").pose_started.connect(_on_right_pose_started)
+	right_hand.get_node("RightHandPose").pose_ended.connect(_on_right_pose_ended)
+
 
 func _process(_delta: float) -> void:
 	if mini_experiment == 2:

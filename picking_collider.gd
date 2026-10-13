@@ -46,6 +46,7 @@ func _on_right_hand_pose_ended(_p_name: String) -> void:
 		if held_object:
 			held_object.reparent(held_object_prev_parent)
 			held_object.gravity_scale = 1
+			held_object.dropped.emit()
 			held_object = null
 
 func _on_left_hand_pose_started(p_name: String) -> void:
@@ -67,4 +68,5 @@ func _on_left_hand_pose_ended(_p_name: String) -> void:
 		if held_object:
 			held_object.reparent(held_object_prev_parent)
 			held_object.gravity_scale = 1
+			held_object.dropped.emit()
 			held_object = null
